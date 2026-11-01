@@ -1,0 +1,25 @@
+
+{
+  "id": "./",
+  "name": "Neon Math Space Shooter",
+  "short_name": "Neon Math",
+  "description": "A neon arcade maths space shooter. Solve maths questions, shoot the correct answers and climb the leaderboard!",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050716",
+  "theme_color": "#080d24",
+  "categories": [
+    "games",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

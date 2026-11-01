@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b20">
+  <meta name="description" content="Neon Math Space Shooter by Vetri Vel Productions. Learn maths, pilot your ship and climb the leaderboard.">
+
+  <title>Neon Math Space Shooter | Vetri Vel Productions</title>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="background-effects" aria-hidden="true">
+    <div class="bg-glow bg-glow-one"></div>
+    <div class="bg-glow bg-glow-two"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="brand" href="#" data-go="home">
+      <span class="brand-icon">✦</span>
+      <span class="brand-text">
+        <strong>NEON MATH</strong>
+        <small>SPACE SHOOTER</small>
+      </span>
+    </a>
+
+    <button id="menuToggle" class="menu-toggle" type="button"
+      aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav id="nav" class="main-nav">
+      <button class="nav-link active" type="button" data-page="home">Home</button>
+      <button class="nav-link" type="button" data-page="game">Play</button>
+      <button class="nav-link" type="button" data-page="leaderboard">Leaderboard</button>
+      <button class="nav-link" type="button" data-page="hangar">Hangar</button>
+      <button class="nav-link" type="button" data-page="profile">Profile</button>
+      <button class="nav-link" type="button" data-page="achievements">Achievements</button>
+      <button class="nav-link" type="button" data-page="settings">Settings</button>
+    </nav>
+  </header>
+
+  <main class="main-content">
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+      <div class="hero-section">
+        <div class="hero-content">
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            MATHS MEETS THE GALAXY
+          </div>
+
+          <h1>
+            NEON MATH
+            <span>SPACE SHOOTER</span>
+          </h1>
+
+          <p class="hero-description">
+            Solve maths questions, command your spaceship and explore
+            a universe powered by numbers.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-go="game">
+              ▶ PLAY NOW
+            </button>
+            <button class="secondary-btn" type="button" data-go="leaderboard">
+              🏆 LEADERBOARD
+            </button>
+          </div>
+
+          <div class="hero-features">
+            <div class="feature-item">
+              <strong>∞</strong>
+              <span>Endless Challenge</span>
+            </div>
+            <div class="feature-item">
+              <strong>⚡</strong>
+              <span>Neon Action</span>
+            </div>
+            <div class="feature-item">
+              <strong>🧠</strong>
+              <span>Maths Skills</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Neon spaceship illustration">
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+          <div class="hero-planet">✦</div>
+          <div class="hero-ship">🚀</div>
+          <div class="hero-stars">✧　·　✦　·　✧</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <span class="eyebrow">YOUR JOURNEY</span>
+        <h2>ENTER THE GALAXY</h2>
+      </div>
+
+      <div class="home-card-grid">
+        <article class="info-card">
+          <div class="card-icon">🎮</div>
+          <h3>Arcade Mode</h3>
+          <p>Answer correctly and survive as the challenge gets harder.</p>
+          <button class="text-btn" type="button" data-go="game">Start playing →</button>
+        </article>
+
+        <article class="info-card">
+          <div class="card-icon">🚀</div>
+          <h3>Ship Hangar</h3>
+          <p>Explore your available spacecraft and choose your favourite.</p>
+          <button class="text-btn" type="button" data-go="hangar">Visit hangar →</button>
+        </article>
+
+        <article class="info-card">
+          <div class="card-icon">🏆</div>
+          <h3>Global Scores</h3>
+          <p>See the top players and compare your best scores.</p>
+          <button class="text-btn" type="button" data-go="leaderboard">View scores →</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- GAME PAGE -->
+    <section id="game" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">ARCADE CHALLENGE</span>
+        <h2>SPACE BATTLE</h2>
+        <p>Choose the correct answer and defend your ship!</p>
+      </div>
+
+      <div class="game-hud">
+        <div class="hud-card">
+          <span>SCORE</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="hud-card">
+          <span>LIVES</span>
+          <strong id="lives">3</strong>
+        </div>
+        <div class="hud-card">
+          <span>LEVEL</span>
+          <strong id="level">1</strong>
+        </div>
+        <div class="hud-card">
+          <span>STREAK</span>
+          <strong id="streak">0</strong>
+        </div>
+      </div>
+
+      <div id="connection" class="connection-status">
+        Checking online connection...
+      </div>
+
+      <div id="arena" class="game-arena">
+        <div class="arena-top">
+          <div class="arena-label">SECTOR 01</div>
+          <button id="pauseBtn" class="small-btn" type="button">Ⅱ PAUSE</button>
+        </div>
+
+        <div class="question-panel">
+          <span class="question-label">SOLVE THE EQUATION</span>
+          <h2 id="question">Ready for launch?</h2>
+        </div>
+
+        <div class="answer-area">
+          <div id="answer0" class="answer-target" data-answer-index="0"></div>
+          <div id="answer1" class="answer-target" data-answer-index="1"></div>
+          <div id="answer2" class="answer-target" data-answer-index="2"></div>
+        </div>
+
+        <div id="laserLayer" class="laser-layer"></div>
+
+        <div id="playerShip" class="player-ship" aria-label="Your spaceship">
+          🚀
+        </div>
+
+        <div id="toast" class="game-toast" aria-live="polite"></div>
+
+        <div id="transitionOverlay" class="transition-overlay">
+          <span id="transitionText">LEVEL UP!</span>
+        </div>
+
+        <!-- START OVERLAY -->
+        <div id="startOverlay" class="game-overlay">
+          <div class="overlay-panel">
+            <span class="overlay-icon">🚀</span>
+            <h2>READY FOR LAUNCH?</h2>
+            <p>Get ready to solve maths problems and protect your spaceship.</p>
+            <button id="startBtn" class="primary-btn" type="button">START GAME</button>
+          </div>
+        </div>
+
+        <!-- PAUSE OVERLAY -->
+        <div id="pauseOverlay" class="game-overlay hidden">
+          <div class="overlay-panel">
+            <span class="overlay-icon">⏸</span>
+            <h2>GAME PAUSED</h2>
+            <p>Take a break. Your mission is waiting.</p>
+            <button id="resumeOverlayBtn" class="primary-btn" type="button">RESUME</button>
+          </div>
+        </div>
+
+        <!-- GAME OVER OVERLAY -->
+        <div id="overOverlay" class="game-overlay hidden">
+          <div class="overlay-panel">
+            <span class="overlay-icon">🌌</span>
+            <h2>MISSION COMPLETE</h2>
+            <p>Your final results:</p>
+            <div id="finalStats" class="final-stats"></div>
+            <button id="againBtn" class="primary-btn" type="button">PLAY AGAIN</button>
+            <button class="secondary-btn" type="button" data-go="home">HOME</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOBILE GAME CONTROLS -->
+      <div class="mobile-controls">
+        <button id="leftBtn" class="control-btn" type="button" aria-label="Move left">◀</button>
+        <button id="fireBtn" class="control-btn fire-control" type="button" aria-label="Shoot">✦</button>
+        <button id="rightBtn" class="control-btn" type="button" aria-label="Move right">▶</button>
+      </div>
+
+      <div class="game-instructions">
+        <p><strong>Desktop:</strong> Use A / D or arrow keys to move. Press SPACE to shoot.</p>
+        <p><strong>Mobile:</strong> Use the on-screen controls.</p>
+        <p>Choose the correct falling answer to score points.</p>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD PAGE -->
+    <section id="leaderboard" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">GALACTIC CHAMPIONS</span>
+        <h2>GLOBAL LEADERBOARD</h2>
+        <p>Can you reach the top of the galaxy?</p>
+      </div>
+
+      <div class="panel leaderboard-panel">
+        <div class="panel-heading">
+          <h3>🏆 TOP 10 PLAYERS</h3>
+          <span class="online-label">ONLINE SCORES</span>
+        </div>
+
+        <div id="scoresList" class="scores-list" aria-live="polite">
+          <p class="empty-message">Leaderboard will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HANGAR PAGE -->
+    <section id="hangar" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">SPACECRAFT COLLECTION</span>
+        <h2>SHIP HANGAR</h2>
+        <p>Choose a ship for your next mission.</p>
+      </div>
+
+      <div class="panel hangar-panel">
+        <div class="ship-preview">
+          <button id="prevShip" class="round-btn" type="button" aria-label="Previous ship">❮</button>
+          <div id="selectedShip" class="selected-ship">🚀</div>
+          <button id="nextShip" class="round-btn" type="button" aria-label="Next ship">❯</button>
+        </div>
+
+        <div id="shipName" class="ship-name">NEON EXPLORER</div>
+        <p id="shipDescription" class="ship-description">Your first spacecraft.</p>
+        <div id="shipGrid" class="ship-grid"></div>
+      </div>
+    </section>
+
+    <!-- PROFILE PAGE -->
+    <section id="profile" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">YOUR PLAYER ID</span>
+        <h2>PLAYER PROFILE</h2>
+        <p>Your progress across the galaxy.</p>
+      </div>
+
+      <div class="panel profile-panel">
+        <div class="profile-avatar">👨‍🚀</div>
+
+        <label for="nickname">PLAYER NICKNAME</label>
+        <div class="nickname-row">
+          <input id="nickname" type="text" maxlength="16"
+            placeholder="Enter your nickname" autocomplete="nickname">
+          <button id="saveNick" class="primary-btn" type="button">SAVE</button>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-card">
+            <span>BEST SCORE</span>
+            <strong id="profileBest">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>CORRECT ANSWERS</span>
+            <strong id="profileCorrect">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>BEST STREAK</span>
+            <strong id="profileStreak">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- ONLINE ACCOUNT -->
+      <div class="panel account-panel">
+        <div class="panel-heading">
+          <h3>☁️ ONLINE ACCOUNT</h3>
+          <span id="authStatus" class="account-status">Not signed in</span>
+        </div>
+
+        <p class="account-description">
+          Sign in with email and password to submit scores to the online leaderboard.
+        </p>
+
+        <label for="authEmail">EMAIL ADDRESS</label>
+        <input id="authEmail" type="email" placeholder="you@example.com"
+          autocomplete="email">
+
+        <label for="authPassword">PASSWORD</label>
+        <input id="authPassword" type="password" placeholder="Enter password"
+          autocomplete="current-password">
+
+        <div class="account-actions">
+          <button id="signUpBtn" class="primary-btn" type="button">CREATE ACCOUNT</button>
+          <button id="signInBtn" class="secondary-btn" type="button">SIGN IN</button>
+          <button id="signOutBtn" class="small-btn hidden" type="button">SIGN OUT</button>
+        </div>
+
+        <p id="authMessage" class="message-text" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS PAGE -->
+    <section id="achievements" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">MISSION MILESTONES</span>
+        <h2>ACHIEVEMENTS</h2>
+        <p>Complete challenges and collect achievements.</p>
+      </div>
+
+      <div id="achievementGrid" class="achievement-grid">
+        <p class="empty-message">Your achievements will appear here.</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS PAGE -->
+    <section id="settings" class="page">
+      <div class="section-heading">
+        <span class="eyebrow">CUSTOMIZE YOUR EXPERIENCE</span>
+        <h2>SETTINGS</h2>
+        <p>Adjust your game preferences.</p>
+      </div>
+
+      <div class="panel settings-panel">
+        <div class="setting-row">
+          <div>
+            <h3>🎵 Music Volume</h3>
+            <p>Control background music.</p>
+          </div>
+          <input id="musicVolume" type="range" min="0" max="100" value="40">
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>🔊 Sound Effects</h3>
+            <p>Control game sound effects.</p>
+          </div>
+          <input id="sfxVolume" type="range" min="0" max="100" value="70">
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>🌙 Reduced Motion</h3>
+            <p>Reduce visual movement and effects.</p>
+          </div>
+          <input id="reducedMotion" type="checkbox">
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h3>🔇 Mute Audio</h3>
+            <p>Turn off all game audio.</p>
+          </div>
+          <input id="mute" type="checkbox">
+        </div>
+
+        <div class="setting-row danger-setting">
+          <div>
+            <h3>🗑️ Clear Local Data</h3>
+            <p>Reset locally saved game progress and preferences.</p>
+          </div>
+          <button id="clearLocal" class="danger-btn" type="button">CLEAR DATA</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">NEON MATH SPACE SHOOTER</div>
+    <p>Created by <strong>Vetri Vel Productions</strong></p>
+    <p class="footer-small">Learn. Play. Explore the universe.</p>
+  </footer>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgm" src="./Rolex Bgm Remix.mp3" loop preload="none"></audio>
+
+  <!-- SUPABASE CLIENT LIBRARY -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- GAME APPLICATION -->
+  <script src="./app.js"></script>
+</body>
+</html>
