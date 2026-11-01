@@ -1805,6 +1805,42 @@
 
     renderProfileAstronaut();
   }
+     // SAVE PLAYER NICKNAME
+  if (elements.saveNick && elements.nickname) {
+    function saveNickname() {
+      const nickname = elements.nickname.value
+        .trim()
+        .replace(/\s+/g, " ")
+        .slice(0, 16);
+
+      if (!nickname) {
+        alert("Please enter a nickname.");
+        elements.nickname.focus();
+        return;
+      }
+
+      data.nickname = nickname;
+      saveData();
+      updateProfile();
+
+      elements.saveNick.textContent = "SAVED ✓";
+
+      window.setTimeout(() => {
+        elements.saveNick.textContent = "SAVE";
+      }, 1500);
+    }
+
+    elements.saveNick.addEventListener(
+      "click",
+      saveNickname
+    );
+
+    elements.nickname.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        saveNickname();
+      }
+    });
+  }
 
   /* ----------------------------------------------------------
      25. SETTINGS
